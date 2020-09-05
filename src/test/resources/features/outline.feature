@@ -11,9 +11,9 @@ Feature: annotation
     Then Login should fail on Linkedin
 
 #Scenario with but
-  Scenario: Scenario with BUT
-    Given I am on Facebook login page
-    When I enter username as "TOM"
-    And I enter password as "JERRY"
-    Then Login should fail
-    But Relogin option should be available
+#  Scenario: Scenario with BUT
+#    Given I am on Facebook login page
+#    When I enter username as "TOM"
+#    And I enter password as "JERRY"
+#    Then Login should fail
+#    But Relogin option should be available

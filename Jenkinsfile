@@ -3,7 +3,7 @@ pipeline {
     stages {
       stage('run tests') {
         steps {
-          sh('echo "Hello Cucumber World"')
+          sh('mvn clean test')
         }
       }
     }

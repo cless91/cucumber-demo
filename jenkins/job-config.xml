@@ -1,0 +1,57 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch@2.22">
+  <actions/>
+  <description>contacts-app</description>
+  <displayName>contacts-app</displayName>
+  <properties>
+    <org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig plugin="docker-workflow@1.23">
+      <dockerLabel></dockerLabel>
+      <registry plugin="docker-commons@1.17"/>
+    </org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig>
+  </properties>
+  <folderViews class="jenkins.branch.MultiBranchProjectViewHolder" plugin="branch-api@2.5.8">
+    <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+  </folderViews>
+  <healthMetrics>
+    <com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric plugin="cloudbees-folder@6.14">
+      <nonRecursive>false</nonRecursive>
+    </com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric>
+  </healthMetrics>
+  <icon class="jenkins.branch.MetadataActionFolderIcon" plugin="branch-api@2.5.8">
+    <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+  </icon>
+  <orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder@6.14">
+    <pruneDeadBranches>true</pruneDeadBranches>
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>-1</numToKeep>
+  </orphanedItemStrategy>
+  <triggers/>
+  <disabled>false</disabled>
+  <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.5.8">
+    <data>
+      <jenkins.branch.BranchSource>
+        <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.3.0">
+          <id>147f3c9a-d4f3-49a8-b759-e932ecd1aa85</id>
+          <remote>git@github.com:cless91/contacts-app.git</remote>
+          <credentialsId>github-credentials</credentialsId>
+          <traits>
+            <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
+            <jenkins.plugins.git.traits.LocalBranchTrait>
+              <extension class="hudson.plugins.git.extensions.impl.LocalBranch">
+                <localBranch>**</localBranch>
+              </extension>
+            </jenkins.plugins.git.traits.LocalBranchTrait>
+          </traits>
+        </source>
+        <strategy class="jenkins.branch.DefaultBranchPropertyStrategy">
+          <properties class="empty-list"/>
+        </strategy>
+      </jenkins.branch.BranchSource>
+    </data>
+    <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+  </sources>
+  <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
+    <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+    <scriptPath>Jenkinsfile</scriptPath>
+  </factory>
+</org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>

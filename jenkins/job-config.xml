@@ -32,7 +32,7 @@
       <jenkins.branch.BranchSource>
         <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.3.0">
           <id>147f3c9a-d4f3-49a8-b759-e932ecd1aa85</id>
-          <remote>git@github.com:cless91/cucumber-demo.git</remote>
+          <remote>https://github.com/cless91/cucumber-demo.git</remote>
           <credentialsId>github-credentials</credentialsId>
           <traits>
             <jenkins.plugins.git.traits.BranchDiscoveryTrait/>

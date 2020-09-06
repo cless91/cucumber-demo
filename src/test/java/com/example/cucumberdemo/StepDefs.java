@@ -22,6 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class StepDefs {
     private WebDriver driver;
+    private Actions actions;
 
     @Before
     public void beforeScenario(Scenario scenario) throws Exception {
@@ -33,6 +34,7 @@ public class StepDefs {
 //        options.setLogLevel(FirefoxDriverLogLevel.TRACE);
 //        driver = new FirefoxDriver(options);
         driver = new FirefoxDriver();
+        actions = new Actions(driver);
 //        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
@@ -58,7 +60,6 @@ public class StepDefs {
 
     @When("^I enter username as \"(.*)\"$")
     public void enterUsername(String arg1) {
-        Actions actions = new Actions(driver);
         WebElement target = driver.findElement(By.id("email"));
         actions.moveToElement(target).perform();
         target.sendKeys(arg1);
@@ -93,14 +94,20 @@ public class StepDefs {
 
     @When("^I enter username as \"(.*)\" on Linkedin$")
     public void enterUsernameLinkedin(String arg1) {
-        driver.findElement(By.id("session_key")).sendKeys(arg1);
+        WebElement target = driver.findElement(By.id("session_key"));
+        actions.moveToElement(target).perform();
+        target.sendKeys(arg1);
     }
 
     @When("^I enter password as \"(.*)\" on Linkedin$")
     public void enterPasswordLinkedin(String arg1) throws InterruptedException {
-        driver.findElement(By.id("session_password")).sendKeys(arg1);
+        WebElement target = driver.findElement(By.id("session_password"));
+        actions.moveToElement(target).perform();
+        target.sendKeys(arg1);
         Thread.sleep(1000);
-        driver.findElement(By.className("sign-in-form__submit-button")).click();
+        target = driver.findElement(By.className("sign-in-form__submit-button"));
+        actions.moveToElement(target).perform();
+        target.click();
     }
 
     @Then("^Login should fail on Linkedin$")

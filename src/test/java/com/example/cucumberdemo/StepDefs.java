@@ -28,12 +28,12 @@ public class StepDefs {
         java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.FINER);
 
         FirefoxOptions options = new FirefoxOptions();
-        options.setHeadless(true);
+//        options.setHeadless(true);
 //        options.setLogLevel(FirefoxDriverLogLevel.TRACE);
-        driver = new FirefoxDriver(options);
-//        driver = new FirefoxDriver();
+//        driver = new FirefoxDriver(options);
+        driver = new FirefoxDriver();
 //        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         System.out.println("start recording "+scenario.getName());
         VideoRecorderUtility.startRecord(scenario.getName());

@@ -3,7 +3,6 @@ FROM jenkins/jenkins:lts
 USER root
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
-ENV MOZ_HEADLESS=0
 
 # prepare apt repositories
 RUN apt update
@@ -23,6 +22,10 @@ RUN dpkg -i jdk-14.0.1_linux-x64_bin.deb
 RUN apt install firefox -y
 RUN apt install xvfb -y
 RUN apt install vim -y
+
+# configuring virtual display for test recording
+RUN Xvfb :0 -screen 0 1024x768x16 &
+RUN export DISPLAY=:1.0
 
 #USER jenkins
 COPY --chown=jenkins:jenkins ./.ssh /var/jenkins_home/.ssh

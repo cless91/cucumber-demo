@@ -4,6 +4,7 @@ services:
   jenkins:
     user: root
     image: myjenkins
+#    image: jenkins/jenkins:lts
     ports:
       - "8080:8080"
     volumes:

@@ -24,8 +24,8 @@ public class StepDefs {
     private WebDriver driver;
     private Actions actions;
     private final Robot robot = new Robot();
-    private int xOffset = 30;
-    private int yOffset = 130;
+    private int xOffset = 20;
+    private int yOffset = 100;
 
     public StepDefs() throws AWTException {
     }

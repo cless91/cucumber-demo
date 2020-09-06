@@ -28,9 +28,21 @@ RUN apt install vim -y
 RUN nohup bash -c "Xvfb :0 -screen 0 1024x768x16 &"
 
 #USER jenkins
-COPY --chown=jenkins:jenkins ./.ssh /var/jenkins_home/.ssh
+#COPY --chown=jenkins:jenkins ./.ssh /var/jenkins_home/.ssh
 COPY ./.ssh /root/.ssh
 COPY plugins.txt /usr/share/jenkins/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
 
+# jenkins initialization material
+ARG GITHUB_ACCESS_TOKEN
+COPY ./jenkins-cli.jar /
+COPY ./job-config.xml /
+COPY ./github-credentials.xml /
+COPY ./configure_jenkins.sh /
+RUN sed -i "s|<password></password>|<password>$GITHUB_ACCESS_TOKEN</password>|" github-credentials.xml
+COPY entrypoint-wrap.sh /entrypoint-wrap.sh
 
+RUN ["chmod", "+x", "/jenkins-cli.jar"]
+RUN ["chmod", "+x", "/entrypoint-wrap.sh"]
+RUN ["chmod", "+x", "/configure_jenkins.sh"]
+ENTRYPOINT ["/entrypoint-wrap.sh"]

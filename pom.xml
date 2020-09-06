@@ -13,8 +13,21 @@
         <maven.compiler.source>8</maven.compiler.source>
     </properties>
 
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>jitpack.io</id>-->
+<!--            <url>https://jitpack.io</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+
+
     <dependencies>
         <!-- BEGIN test dependencies -->
+<!--        <dependency>-->
+<!--            <groupId>com.github.detro</groupId>-->
+<!--            <artifactId>ghostdriver</artifactId>-->
+<!--            <version>2.1.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>

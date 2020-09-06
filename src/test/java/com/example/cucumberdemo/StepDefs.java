@@ -11,11 +11,11 @@ import org.awaitility.Awaitility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.*;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,11 +25,14 @@ public class StepDefs {
     @Before
     public void beforeScenario(Scenario scenario) throws Exception {
         System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver");
+        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.FINER);
+
         FirefoxOptions options = new FirefoxOptions();
-        options.setCapability("marionette", true);
-        driver = new FirefoxDriver(options);
-//        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+//        options.setHeadless(true);
+//        options.setLogLevel(FirefoxDriverLogLevel.TRACE);
+//        driver = new FirefoxDriver(options);
+        driver = new FirefoxDriver();
+//        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         System.out.println("start recording "+scenario.getName());

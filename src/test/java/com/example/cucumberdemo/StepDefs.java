@@ -61,7 +61,7 @@ public class StepDefs {
     @When("^I enter username as \"(.*)\"$")
     public void enterUsername(String arg1) {
         WebElement target = driver.findElement(By.id("email"));
-        actions.moveToElement(target).perform();
+        actions.moveToElement(target).build().perform();
         target.sendKeys(arg1);
     }
 
@@ -95,18 +95,18 @@ public class StepDefs {
     @When("^I enter username as \"(.*)\" on Linkedin$")
     public void enterUsernameLinkedin(String arg1) {
         WebElement target = driver.findElement(By.id("session_key"));
-        actions.moveToElement(target).perform();
+        actions.moveToElement(target).build().perform();
         target.sendKeys(arg1);
     }
 
     @When("^I enter password as \"(.*)\" on Linkedin$")
     public void enterPasswordLinkedin(String arg1) throws InterruptedException {
         WebElement target = driver.findElement(By.id("session_password"));
-        actions.moveToElement(target).perform();
+        actions.moveToElement(target).build().perform();
         target.sendKeys(arg1);
         Thread.sleep(1000);
         target = driver.findElement(By.className("sign-in-form__submit-button"));
-        actions.moveToElement(target).perform();
+        actions.moveToElement(target).build().perform();
         target.click();
     }
 

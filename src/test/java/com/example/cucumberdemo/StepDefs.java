@@ -38,7 +38,7 @@ public class StepDefs {
 //        driver = new FirefoxDriver(options);
         driver = new FirefoxDriver();
         actions = new Actions(driver);
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         System.out.println("start recording "+scenario.getName());

@@ -25,10 +25,10 @@ public class StepDefs {
     @Before
     public void beforeScenario(Scenario scenario) throws Exception {
         System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver");
-//        FirefoxOptions options = new FirefoxOptions();
-//        options.setCapability("marionette", false);
-//        driver = new FirefoxDriver(options);
-        driver = new FirefoxDriver();
+        FirefoxOptions options = new FirefoxOptions();
+        options.setCapability("marionette", true);
+        driver = new FirefoxDriver(options);
+//        driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 

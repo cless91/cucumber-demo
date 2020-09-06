@@ -3,7 +3,7 @@ services:
 
   jenkins:
     user: root
-    image: contact-app-jenkins:latest
+    image: myjenkins
     ports:
       - "8080:8080"
     volumes:

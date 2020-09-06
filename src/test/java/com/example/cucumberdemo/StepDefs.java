@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.interactions.Actions;
 
+import java.awt.*;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -94,18 +95,23 @@ public class StepDefs {
     }
 
     @When("^I enter username as \"(.*)\" on Linkedin$")
-    public void enterUsernameLinkedin(String arg1) {
+    public void enterUsernameLinkedin(String arg1) throws AWTException {
         WebElement target = driver.findElement(By.id("session_key"));
         Point location = target.getLocation();
-        actions.moveToElement(target, location.getX(), location.getY()).sendKeys(arg1);
+//        actions.moveToElement(target).sendKeys(arg1);
+        Robot robot = new Robot();
+        robot.mouseMove(location.getX(), location.getY());
 //        actions.moveToElement(target, location.getX(), location.getY()).build().perform();
-//        target.sendKeys(arg1);
+        target.sendKeys(arg1);
     }
 
     @When("^I enter password as \"(.*)\" on Linkedin$")
-    public void enterPasswordLinkedin(String arg1) throws InterruptedException {
+    public void enterPasswordLinkedin(String arg1) throws InterruptedException, AWTException {
         WebElement target = driver.findElement(By.id("session_password"));
-        actions.moveToElement(target).build().perform();
+        Point location = target.getLocation();
+        Robot robot = new Robot();
+        robot.mouseMove(location.getX(), location.getY());
+//        actions.moveToElement(target).build().perform();
         target.sendKeys(arg1);
         Thread.sleep(1000);
         target = driver.findElement(By.className("sign-in-form__submit-button"));

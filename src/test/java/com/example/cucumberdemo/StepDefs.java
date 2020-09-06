@@ -8,12 +8,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.awaitility.Awaitility;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.*;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.*;
 
 import java.awt.*;
 import java.time.Duration;
@@ -26,6 +24,11 @@ public class StepDefs {
     private WebDriver driver;
     private Actions actions;
     private final Robot robot = new Robot();
+    private int xOffset = 30;
+    private int yOffset = 130;
+
+    public StepDefs() throws AWTException {
+    }
 
     @Before
     public void beforeScenario(Scenario scenario) throws Exception {
@@ -99,9 +102,8 @@ public class StepDefs {
     public void enterUsernameLinkedin(String arg1) throws AWTException {
         WebElement target = driver.findElement(By.id("session_key"));
         Point location = target.getLocation();
-//        actions.moveToElement(target).sendKeys(arg1);
-        robot.mouseMove(location.getX(), location.getY());
-//        actions.moveToElement(target, location.getX(), location.getY()).build().perform();
+        robot.mouseMove(location.getX() + xOffset, location.getY()+ yOffset);
+        actions.moveToElement(target).build().perform();
         target.sendKeys(arg1);
     }
 
@@ -109,14 +111,12 @@ public class StepDefs {
     public void enterPasswordLinkedin(String arg1) throws InterruptedException, AWTException {
         WebElement target = driver.findElement(By.id("session_password"));
         Point location = target.getLocation();
-        robot.mouseMove(location.getX(), location.getY());
-//        actions.moveToElement(target).build().perform();
+        robot.mouseMove(location.getX() + xOffset, location.getY()+ yOffset);
         target.sendKeys(arg1);
         Thread.sleep(1000);
         target = driver.findElement(By.className("sign-in-form__submit-button"));
         location = target.getLocation();
-        robot.mouseMove(location.getX(), location.getY());
-        actions.moveToElement(target).build().perform();
+        robot.mouseMove(location.getX() + xOffset, location.getY()+ yOffset);
         target.click();
     }
 

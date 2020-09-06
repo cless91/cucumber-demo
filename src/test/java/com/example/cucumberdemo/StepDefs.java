@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -25,7 +26,7 @@ public class StepDefs {
     @Before
     public void beforeScenario(Scenario scenario) throws Exception {
         System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver");
-        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.FINER);
+        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.FINEST);
 
         FirefoxOptions options = new FirefoxOptions();
 //        options.setHeadless(true);
@@ -57,7 +58,10 @@ public class StepDefs {
 
     @When("^I enter username as \"(.*)\"$")
     public void enterUsername(String arg1) {
-        driver.findElement(By.id("email")).sendKeys(arg1);
+        Actions actions = new Actions(driver);
+        WebElement target = driver.findElement(By.id("email"));
+        actions.moveToElement(target).perform();
+        target.sendKeys(arg1);
     }
 
     @When("^I enter password as \"(.*)\"$")

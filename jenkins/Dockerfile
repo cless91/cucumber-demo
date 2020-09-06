@@ -3,6 +3,7 @@ FROM jenkins/jenkins:lts
 USER root
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
+ENV DISPLAY=:0.0
 
 # prepare apt repositories
 RUN apt update
@@ -24,8 +25,7 @@ RUN apt install xvfb -y
 RUN apt install vim -y
 
 # configuring virtual display for test recording
-RUN Xvfb :0 -screen 0 1024x768x16 &
-RUN export DISPLAY=:1.0
+RUN nohup bash -c "Xvfb :0 -screen 0 1024x768x16 &"
 
 #USER jenkins
 COPY --chown=jenkins:jenkins ./.ssh /var/jenkins_home/.ssh

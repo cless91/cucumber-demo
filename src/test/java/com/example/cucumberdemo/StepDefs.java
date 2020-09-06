@@ -25,6 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StepDefs {
     private WebDriver driver;
     private Actions actions;
+    private final Robot robot = new Robot();
 
     @Before
     public void beforeScenario(Scenario scenario) throws Exception {
@@ -99,7 +100,6 @@ public class StepDefs {
         WebElement target = driver.findElement(By.id("session_key"));
         Point location = target.getLocation();
 //        actions.moveToElement(target).sendKeys(arg1);
-        Robot robot = new Robot();
         robot.mouseMove(location.getX(), location.getY());
 //        actions.moveToElement(target, location.getX(), location.getY()).build().perform();
         target.sendKeys(arg1);
@@ -109,12 +109,13 @@ public class StepDefs {
     public void enterPasswordLinkedin(String arg1) throws InterruptedException, AWTException {
         WebElement target = driver.findElement(By.id("session_password"));
         Point location = target.getLocation();
-        Robot robot = new Robot();
         robot.mouseMove(location.getX(), location.getY());
 //        actions.moveToElement(target).build().perform();
         target.sendKeys(arg1);
         Thread.sleep(1000);
         target = driver.findElement(By.className("sign-in-form__submit-button"));
+        location = target.getLocation();
+        robot.mouseMove(location.getX(), location.getY());
         actions.moveToElement(target).build().perform();
         target.click();
     }

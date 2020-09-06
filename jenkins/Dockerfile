@@ -1,8 +1,9 @@
 FROM jenkins/jenkins:lts
 
-ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
-
 USER root
+
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
+ENV MOZ_HEADLESS=0
 
 # prepare apt repositories
 RUN apt update

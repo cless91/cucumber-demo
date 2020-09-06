@@ -9,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.awaitility.Awaitility;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.*;
@@ -95,8 +96,10 @@ public class StepDefs {
     @When("^I enter username as \"(.*)\" on Linkedin$")
     public void enterUsernameLinkedin(String arg1) {
         WebElement target = driver.findElement(By.id("session_key"));
-        actions.moveToElement(target).build().perform();
-        target.sendKeys(arg1);
+        Point location = target.getLocation();
+        actions.moveToElement(target, location.getX(), location.getY()).sendKeys(arg1);
+//        actions.moveToElement(target, location.getX(), location.getY()).build().perform();
+//        target.sendKeys(arg1);
     }
 
     @When("^I enter password as \"(.*)\" on Linkedin$")
